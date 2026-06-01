@@ -1,0 +1,23 @@
+---
+title: MYSTERYLIFESTYLE
+category: Digital Products Marketplace
+client: Private Client, Nigeria
+year: "2024"
+stack: ["Next.js", "Supabase", "Paystack", "TypeScript"]
+---
+
+## The Problem
+
+A Nigerian creator needed a marketplace for digital products — Canva templates, e-books, and course guides. The requirements were unforgiving: server-side payment verification, expiring download tokens to prevent file sharing after purchase, and a brand aesthetic that positioned the product as premium, not generic.
+
+## The Approach
+
+Payment security was locked down first. Paystack webhooks hit a Next.js API route that verifies signatures server-side before any download token is issued. No payment status can be faked from the client.
+
+Download access runs through Supabase Edge Functions generating signed, time-limited URLs. A purchased file URL expires after 15 minutes. The file cannot be shared.
+
+The design system was strict: Playfair Display for headings, DM Sans for body copy, black and white throughout. No colour except where product imagery brings it. The brand needed to feel like it cost more than it did.
+
+## The Outcome
+
+Live and processing transactions. The security architecture has held — zero fraudulent download incidents. The expiring token pattern has since been reused in two other client projects.

@@ -16,6 +16,9 @@
 # production
 /build
 
+# local agent config
+.claude/
+
 # misc
 .DS_Store
 *.pem

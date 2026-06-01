@@ -1,0 +1,23 @@
+---
+title: Clare Pastries
+category: E-Commerce Platform
+client: Michael Aderi, Busia Town
+year: "2024"
+stack: ["Next.js 15", "Prisma", "Supabase", "Sanity CMS", "PayHero M-Pesa"]
+---
+
+## The Problem
+
+A Busia-based bakery needed an e-commerce platform that handled M-Pesa payments natively, had a content management system the owner could operate without a developer, real-time order notifications, and a separate admin dashboard for order management.
+
+## The Approach
+
+Multi-system architecture from the start: Next.js 15 storefront, Sanity Studio for product content management, Prisma with Supabase for orders and auth, PayHero for M-Pesa STK push integration, and CallMeBot for instant WhatsApp order alerts to the business owner.
+
+The admin dashboard is a separate Next.js application sharing the same Supabase backend. This kept the storefront lean while giving the owner full order visibility.
+
+Navigated persistent Prisma schema migration conflicts across environments and resolved Vercel deployment pipeline failures during launch.
+
+## The Outcome
+
+Both storefront and admin dashboard are live. The owner manages all products independently through Sanity Studio — no developer intervention needed for content. M-Pesa payments process in real time with immediate WhatsApp alerts to the business. The system handles the full customer journey without manual steps.

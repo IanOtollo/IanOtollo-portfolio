@@ -1,0 +1,21 @@
+---
+title: IOM Medic
+category: Health Companion PWA
+client: IOM Empire — Internal Product
+year: "2025"
+stack: ["Next.js 15", "TypeScript", "PWA APIs", "IndexedDB", "Framer Motion"]
+---
+
+## The Problem
+
+IOM Medic started as a React Native application built with Expo. It ran into persistent EAS Build failures on Windows that blocked every deployment path — cloud builds, local builds, development builds. The product could not wait indefinitely for the toolchain to cooperate.
+
+## The Approach
+
+I made the decision to migrate entirely to a Next.js 15 PWA. Every native feature was mapped to a browser API equivalent: camera access to `getUserMedia()`, push notifications to the Web Notifications API, offline data to IndexedDB, installation prompt to the Web App Manifest.
+
+Zero feature loss. Full cross-platform compatibility without a native build pipeline. The browser is the runtime.
+
+## The Outcome
+
+IOM Medic is deployed and fully functional as a Progressive Web App. It is installable on Android and iOS directly from the browser. The architectural decision to migrate saved the product from indefinite delay and produced a more maintainable codebase with a simpler deployment story.
