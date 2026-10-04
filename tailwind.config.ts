@@ -1,34 +1,67 @@
 import type { Config } from "tailwindcss"
 
+const token = (name: string) => `hsl(var(--${name}) / <alpha-value>)`
+
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
+    container: {
+      center: true,
+      padding: { DEFAULT: "1rem", sm: "1.5rem", lg: "2rem" },
+      screens: { "2xl": "80rem" },
+    },
     extend: {
       colors: {
-        base: "#0A0A0A",
-        surface: "#111111",
-        "surface-2": "#1A1A1A",
-        border: "#222220",
-        "text-primary": "#F5F5F0",
-        "text-secondary": "#888884",
-        "text-tertiary": "#555552",
-        gold: "#C8A96E",
-        "gold-dim": "#9A7B4A",
+        background: token("background"),
+        foreground: token("foreground"),
+        card: token("card"),
+        muted: token("muted"),
+        "muted-foreground": token("muted-foreground"),
+        border: token("border"),
+        primary: token("primary"),
+        "primary-foreground": token("primary-foreground"),
+        accent: token("accent"),
       },
       fontFamily: {
-        display: ["var(--font-display)", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-fraunces)", "Georgia", "serif"],
       },
-      animation: {
-        "slow-spin": "spin 60s linear infinite",
-        "bounce-subtle": "bounceSubtle 2s ease-in-out infinite",
+      borderRadius: {
+        xl: "var(--radius)",
+        "2xl": "calc(var(--radius) + 0.5rem)",
       },
       keyframes: {
-        bounceSubtle: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(6px)" },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
         },
+        scan: {
+          "0%": { top: "6%" },
+          "50%": { top: "88%" },
+          "100%": { top: "6%" },
+        },
+        caret: {
+          "0%, 18%": { opacity: "1", backgroundColor: "hsl(262 85% 68%)" },
+          "25%": { opacity: "0", backgroundColor: "hsl(262 85% 68%)" },
+          "30%": { opacity: "0", backgroundColor: "hsl(320 90% 70%)" },
+          "37%, 55%": { opacity: "1", backgroundColor: "hsl(320 90% 70%)" },
+          "62%": { opacity: "0", backgroundColor: "hsl(320 90% 70%)" },
+          "66%": { opacity: "0", backgroundColor: "hsl(190 90% 62%)" },
+          "73%, 88%": { opacity: "1", backgroundColor: "hsl(190 90% 62%)" },
+          "95%": { opacity: "0", backgroundColor: "hsl(190 90% 62%)" },
+          "99%": { opacity: "0", backgroundColor: "hsl(262 85% 68%)" },
+          "100%": { opacity: "1", backgroundColor: "hsl(262 85% 68%)" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.2" },
+        },
+      },
+      animation: {
+        marquee: "marquee 40s linear infinite",
+        scan: "scan 3.6s cubic-bezier(0.65, 0, 0.35, 1) infinite",
+        blink: "blink 1.4s ease-in-out infinite",
+        caret: "caret 2.4s ease-in-out infinite",
       },
     },
   },

@@ -2,23 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: #0A0A0A; color: #F5F5F0; scroll-behavior: auto; }
-body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; cursor: none; }
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+    --card: 222 40% 9%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 18% 66%;
+    --border: 222 25% 20%;
+    --primary: 262 85% 68%;
+    --primary-foreground: 222 47% 6%;
+    --accent: 262 85% 68%;
+    --radius: 0.75rem;
+    color-scheme: dark;
+  }
 
-::selection { background: #C8A96E; color: #0A0A0A; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
 
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #0A0A0A; }
-::-webkit-scrollbar-thumb { background: #222220; border-radius: 2px; }
+  body {
+    @apply bg-background font-sans leading-relaxed text-foreground;
+  }
 
-.grain-overlay {
-  position: fixed; inset: 0; pointer-events: none; z-index: 999;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-primary;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display leading-tight tracking-tight;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
-@media (pointer: coarse) {
-  body { cursor: auto; }
+@layer components {
+  .eyebrow {
+    @apply font-sans text-xs font-medium uppercase tracking-widest text-muted-foreground;
+  }
+  .section {
+    @apply px-4 py-20 sm:px-6 md:py-32 lg:px-8;
+  }
+  .grain::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+/* Inspect mode: reveals the design system on the live page. */
+html.inspect [data-inspect] {
+  outline: 1px dashed hsl(var(--primary) / 0.7);
+  outline-offset: 2px;
+  position: relative;
+}
+html.inspect [data-inspect]::before {
+  content: attr(data-inspect);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  transform: translateY(-100%);
+  padding: 1px 6px;
+  font: 500 10px/1.6 var(--font-inter), sans-serif;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
 }

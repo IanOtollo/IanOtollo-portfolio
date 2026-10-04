@@ -1,17 +1,17 @@
-import HeroSection from "@/components/home/HeroSection"
-import StatStripSection from "@/components/home/StatStripSection"
-import FeaturedWorkSection from "@/components/home/FeaturedWorkSection"
-import ServicesTeaserSection from "@/components/home/ServicesTeaserSection"
-import EmpireTeaserSection from "@/components/home/EmpireTeaserSection"
+import { Hero } from "@/components/home/Hero"
+import { About } from "@/components/home/About"
+import { Experience } from "@/components/home/Experience"
+import { Software } from "@/components/home/Software"
+import { Ventures } from "@/components/home/Ventures"
 
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <StatStripSection />
-      <FeaturedWorkSection />
-      <ServicesTeaserSection />
-      <EmpireTeaserSection />
+      <Hero />
+      <About />
+      <Experience />
+      <Software />
+      <Ventures />
     </>
   )
 }
